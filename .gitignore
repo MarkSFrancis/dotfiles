@@ -1,0 +1,8 @@
+# Ignore all files and subdirectories
+*
+
+# Files to keep
+!.p10k.zsh
+!.zshrc
+!README.md
+!.gitignore
