@@ -107,9 +107,24 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Add nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Add .dotnet to $PATH
+if [ -d $HOME/.dotnet ] ; then
+  export PATH="$PATH:$HOME/.dotnet"
+  
+  # Add .NET Core SDK tools
+  export PATH="$PATH:$HOME/.dotnet/tools"
+fi
+
+
+# Add the Android SDK
+if [ -d "$HOME/Library/Android/sdk" ] ; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+fi
 
 alias pr="gh pr create -f"
 alias creds="code ~/.aws/credentials"
