@@ -107,10 +107,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Opting out of telemetry for various services
+export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=true
+
 # Add nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -d $HOME/.nvm ] ; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
 
 # Add .dotnet to $PATH
 if [ -d $HOME/.dotnet ] ; then
@@ -120,11 +125,13 @@ if [ -d $HOME/.dotnet ] ; then
   export PATH="$PATH:$HOME/.dotnet/tools"
 fi
 
-
 # Add the Android SDK
 if [ -d "$HOME/Library/Android/sdk" ] ; then
   export ANDROID_HOME=$HOME/Library/Android/sdk
   export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+  # Add Java
+  export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 fi
 
 alias pr="gh pr create -f"
@@ -132,3 +139,7 @@ alias creds="code ~/.aws/credentials"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Requires fnm to be installed
+# TODO: only run if fnm is installed
+eval "$(fnm env --use-on-cd)"
