@@ -1,8 +1,6 @@
 [user]
 	email = mrkfrancis8@gmail.com
 	name = Mark Francis
-[pull]
-	rebase = true
 [merge]
 	ff = true
 [push]
