@@ -3,6 +3,8 @@
 	name = Mark Francis
 [merge]
 	ff = true
+[pull]
+	rebase = false
 [push]
 	autoSetupRemote = true
 [alias]
