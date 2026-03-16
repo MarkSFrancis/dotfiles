@@ -135,11 +135,6 @@ if [ -d "$HOME/Library/Android/sdk" ] ; then
   export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 fi
 
-# Add fnm
-if [ -d "$HOME/.fnm" ] || [ -d "$XDG_DATA_HOME/fnm" ] || [ -d "$HOME/Library/Application Support/fnm" ] || [ -d "$HOME/.local/share/fnm" ] ; then
-  eval "$(fnm env --use-on-cd)"
-fi
-
 alias pr="gh pr create -f"
 
 # Azure DevOps Aliases
@@ -149,3 +144,10 @@ alias azpr="git push && az repos pr create" # Push local changes and then create
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# fnm
+FNM_PATH="/home/mark/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
