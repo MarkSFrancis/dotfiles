@@ -13,3 +13,5 @@
 # Use work config for work repos
 [includeIf "gitdir:~/code/work/"]
 	path = ~/code/work/.gitconfig
+[init]
+	defaultBranch = main

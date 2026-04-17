@@ -146,8 +146,11 @@ alias azpr="git push && az repos pr create" # Push local changes and then create
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # fnm
-FNM_PATH="/home/mark/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "$(fnm env --shell zsh)"
 fi
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
