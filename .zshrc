@@ -107,8 +107,31 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Opting out of telemetry for various services
-export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=true
+compress_video() {
+  if [[ $# -lt 1 || $# -gt 2 ]]; then
+    echo "Usage: compress_video input.mov [output.mp4]"
+    return 2
+  fi
+
+  local input="$1"
+  local output="${2:-${input%.*}-compressed.mp4}"
+
+  ffmpeg -n \
+    -i "$input" \
+    -map 0:v:0 \
+    -map '0:a?' \
+    -vf "scale=w='min(1920,iw)':h='min(1080,ih)':force_original_aspect_ratio=decrease:force_divisible_by=2" \
+    -c:v libx264 \
+    -preset slow \
+    -crf 21 \
+    -profile:v main \
+    -bf 0 \
+    -pix_fmt yuv420p \
+    -c:a aac \
+    -b:a 128k \
+    -movflags +faststart \
+    "$output"
+}
 
 # Add nvm
 if [ -d $HOME/.nvm ] ; then
@@ -154,3 +177,6 @@ fi
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# nub
+export PATH="$HOME/.nub/bin:$PATH"
