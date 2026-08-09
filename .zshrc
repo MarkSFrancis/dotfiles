@@ -180,3 +180,7 @@ export PATH="$HOME/.opencode/bin:$PATH"
 
 # nub
 export PATH="$HOME/.nub/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME/bin:$PATH"
